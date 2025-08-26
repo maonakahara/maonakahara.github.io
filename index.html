@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>だいぶデモサイト</title>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QC0PV588TP"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    gtag('config', 'G-QC0PV588TP');
+  </script>
 
-    // 外部リンク追跡パラメータ追加スクリプト
+  <!-- カスタムイベント＆外部リンク追跡 -->
+  <script>
     document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll("a.tracked").forEach(link => {
         const param = link.getAttribute("data-param");
@@ -20,7 +24,6 @@
         }
       });
 
-      // CTAクリックイベント送信
       const cta = document.getElementById("cta-button");
       if (cta) {
         cta.addEventListener("click", () => {
