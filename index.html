@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>だいぶデモサイト</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+
+    // 外部リンク追跡パラメータ追加スクリプト
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("a.tracked").forEach(link => {
+        const param = link.getAttribute("data-param");
+        if (param && link.href.startsWith("http")) {
+          const sep = link.href.includes("?") ? "&" : "?";
+          link.href += sep + param;
+        }
+      });
+
+      // CTAクリックイベント送信
+      const cta = document.getElementById("cta-button");
+      if (cta) {
+        cta.addEventListener("click", () => {
+          gtag('event', 'click', {
+            'event_category': 'CTA',
+            'event_label': 'トップページ'
+          });
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <h1>だいぶデモサイト</h1>
+  <p>色々テスト用ページです</p>
+
+  <a id="cta-button" href="contact.html">お問い合わせはこちら</a>
+
+  <hr>
+  <p>外部リンクの例（追跡パラメータつき）:</p>
+  <a href="https://example.com" class="tracked" data-param="utm_source=maosite&utm_medium=blog">外部サイトへ</a>
+</body>
+</html>

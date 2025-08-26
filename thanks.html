@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>お問い合わせありがとうございます｜だいぶデモサイト</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+
+    // サンクスページ表示イベント
+    gtag('event', 'conversion', {
+      'event_category': 'form',
+      'event_label': '送信完了'
+    });
+  </script>
+</head>
+<body>
+  <h1>お問い合わせありがとうございます</h1>
+  <p>送信が完了しました。</p>
+</body>
+</html>
