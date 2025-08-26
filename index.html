@@ -13,9 +13,9 @@
     gtag('config', 'G-QC0PV588TP');
   </script>
 
-  <!-- カスタムイベント＆外部リンク追跡 -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // 外部リンク追跡パラメータ追加
       document.querySelectorAll("a.tracked").forEach(link => {
         const param = link.getAttribute("data-param");
         if (param && link.href.startsWith("http")) {
@@ -24,13 +24,18 @@
         }
       });
 
+      // CTAクリックイベント送信 + 遷移
       const cta = document.getElementById("cta-button");
       if (cta) {
-        cta.addEventListener("click", () => {
+        cta.addEventListener("click", (e) => {
+          e.preventDefault(); // 即遷移を止める
           gtag('event', 'click', {
             'event_category': 'CTA',
             'event_label': 'トップページ'
           });
+          setTimeout(() => {
+            window.location.href = cta.href;
+          }, 300); // イベント送信後、0.3秒後に遷移
         });
       }
     });
@@ -44,6 +49,6 @@
 
   <hr>
   <p>外部リンクの例（追跡パラメータつき）:</p>
-  <a href="https://google.com" class="tracked" data-param="utm_source=maosite&utm_medium=blog">外部サイトへ（Google）</a>
+  <a href="https://google.com" class="tracked" data-param="utm_source=maosite&utm_medium=blog" target=_blank>外部サイトへ（Google）</a>
 </body>
 </html>
